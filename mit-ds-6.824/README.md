@@ -5,7 +5,7 @@
 ## Lecture
 - [x] [MapReduce](lectures/1.MapReduce.md)
 - [x] [RPC and Threads](lectures/2.RPC%20and%20Threads.md)
-- [ ] [GFS]
+- [x] [GFS](lectures/3.GFS.md)
 - [ ] [Primary-Backup Replication]
 - [ ] [Raft]
 
