@@ -7,7 +7,21 @@
 - [x] [RPC and Threads](lectures/2.RPC%20and%20Threads.md)
 - [x] [GFS](lectures/3.GFS.md)
 - [x] [Primary-Backup Replication](lectures/4.Primary-Backup%20replication.md)
-- [ ] [Raft]
+- [x] [Golang and thread](lectures/5.Golang%20and%20thread.md)
+- [ ] Raft
+- [ ] Zookeeper
+- [ ] More replication, CRAQ
+- [ ] Cloud Replicated DB, Aurora
+- [ ] Cache consistency
+- [ ] Distributed transaction
+- [ ] Spanner
+- [ ] Optimistic Concurrency Control
+- [ ] Spark
+- [ ] Cache Consistency, Memcached
+- [ ] Causal consistency, COPS
+- [ ] Fork Consistency
+- [ ] P2P Bitcoin
+- [ ] Blockstack
 
 ## Labs
 
