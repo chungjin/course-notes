@@ -8,10 +8,10 @@
 - [x] [GFS](lectures/3.GFS.md)
 - [x] [Primary-Backup Replication](lectures/4.Primary-Backup%20replication.md)
 - [x] [Golang and thread](lectures/5.Golang%20and%20thread.md)
-- [ ] Raft
-- [ ] Zookeeper
-- [ ] More replication, CRAQ
-- [ ] Cloud Replicated DB, Aurora
+- [x] [Raft](lectures/6.Raft.md)
+- [x] [Zookeeper](lectures/7.Zookeeper.md)
+- [x] [More replication, CRAQ](lectures/8.Chain_Replication_CRAQ.md)
+- [x] [Cloud Replicated DB, Aurora](lectures/9.Aurora_SQL.md)
 - [ ] Cache consistency
 - [ ] Distributed transaction
 - [ ] Spanner
