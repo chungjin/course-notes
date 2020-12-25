@@ -13,7 +13,7 @@
 - [x] [More replication, CRAQ](lectures/8.Chain_Replication_CRAQ.md)
 - [x] [Cloud Replicated DB, Aurora](lectures/9.Aurora_SQL.md)
 - [x] [Cache consistency](lectures/10.CacheConsistency.md)
-- [ ] Distributed transaction
+- [x] [Distributed transaction](lectures/11.DistributedTransactions.md)
 - [ ] Spanner
 - [ ] Optimistic Concurrency Control
 - [ ] Spark
@@ -26,7 +26,7 @@
 Note:
 1. lecture's video is more easier to digest than read the paper or course notes directly.
 2. The best way to measure whether you are really understand it is to check whether you can summarize it, and write down the key point without looking back for assistance。
-My recommendation is to watch video first, then try to digest notes and summarize it. 
+My recommendation is to watch video first, then try to digest notes and summarize it.
 
 ## Labs
 
