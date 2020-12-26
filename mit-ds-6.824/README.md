@@ -14,7 +14,7 @@
 - [x] [Cloud Replicated DB, Aurora](lectures/9.Aurora_SQL.md)
 - [x] [Cache consistency](lectures/10.CacheConsistency.md)
 - [x] [Distributed transaction](lectures/11.DistributedTransactions.md)
-- [ ] Spanner
+- [x] [Spanner](lectures/12.Spanner.md)
 - [ ] Optimistic Concurrency Control
 - [ ] Spark
 - [ ] Cache Consistency, Memcached
