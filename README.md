@@ -1,1 +1,3 @@
 # course-notes
+
+- [Algorithm](algorithm)
