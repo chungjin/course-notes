@@ -15,8 +15,8 @@
 - [x] [Cache consistency](lectures/10.CacheConsistency.md)
 - [x] [Distributed transaction](lectures/11.DistributedTransactions.md)
 - [x] [Spanner](lectures/12.Spanner.md)
-- [ ] Optimistic Concurrency Control
-- [ ] Spark
+- [x] [FaRM, Optimistic Concurrency Control](lectures/13.OptimisticConcurrencyControl.md)
+- [x] [Spark](lectures/14.Spark.md)
 - [ ] Cache Consistency, Memcached
 - [ ] Causal consistency, COPS
 - [ ] Fork Consistency
@@ -25,7 +25,7 @@
 
 Note:
 1. lecture's video is more easier to digest than read the paper or course notes directly.
-2. The best way to measure whether you are really understand it is to check whether you can summarize it, and write down the key point without looking back for assistance。
+2. The best way to measure whether you are really understand it is to check whether you can summarize it, and write down the key point without looking back for assistance.
 My recommendation is to watch video first, then try to digest notes and summarize it.
 
 ## Labs
