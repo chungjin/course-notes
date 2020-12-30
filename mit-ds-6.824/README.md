@@ -12,12 +12,12 @@
 - [x] [Zookeeper](lectures/7.Zookeeper.md)
 - [x] [More replication, CRAQ](lectures/8.Chain_Replication_CRAQ.md)
 - [x] [Cloud Replicated DB, Aurora](lectures/9.Aurora_SQL.md)
-- [x] [Cache consistency](lectures/10.CacheConsistency.md)
+- [x] [Cache consistency, Frangipani](lectures/10.CacheConsistency.md)
 - [x] [Distributed transaction](lectures/11.DistributedTransactions.md)
 - [x] [Spanner](lectures/12.Spanner.md)
 - [x] [FaRM, Optimistic Concurrency Control](lectures/13.OptimisticConcurrencyControl.md)
 - [x] [Spark](lectures/14.Spark.md)
-- [ ] Cache Consistency, Memcached
+- [x] [Cache Consistency, Memcached](lectures/15.CacheConsistency.md)
 - [ ] Causal consistency, COPS
 - [ ] Fork Consistency
 - [ ] P2P Bitcoin
