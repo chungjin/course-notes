@@ -18,8 +18,8 @@
 - [x] [FaRM, Optimistic Concurrency Control](lectures/13.OptimisticConcurrencyControl.md)
 - [x] [Spark](lectures/14.Spark.md)
 - [x] [Cache Consistency, Memcached](lectures/15.CacheConsistency.md)
-- [ ] Causal consistency, COPS
-- [ ] Fork Consistency
+- [x] [Causal consistency, COPS](lectures/16.CausalConsistency.md)
+- [ ] [Fork Consistency](lectures/17.ForkConsistency.md)
 - [ ] P2P Bitcoin
 - [ ] Blockstack
 
@@ -29,7 +29,7 @@ Note:
 My recommendation is to watch video first, then try to digest notes and summarize it.
 
 ## Labs
-
+todo
 
 ## Reference
 - [effective go](https://golang.org/doc/effective_go.html)
