@@ -19,7 +19,7 @@
 - [x] [Spark](lectures/14.Spark.md)
 - [x] [Cache Consistency, Memcached](lectures/15.CacheConsistency.md)
 - [x] [Causal consistency, COPS](lectures/16.CausalConsistency.md)
-- [ ] [Fork Consistency](lectures/17.ForkConsistency.md)
+- [x] [Fork Consistency, Certificate Transparency](lectures/17.ForkConsistency.md)
 - [ ] P2P Bitcoin
 - [ ] Blockstack
 
