@@ -1,0 +1,13 @@
+language: go
+
+go:
+  - "1.11.x"
+
+install:
+  - export GOPATH="${TRAVIS_BUILD_DIR}:$GOPATH"
+
+script: 
+  - go test -v raft -run 2A
+  - go test -v raft -run 2B
+  - go test -v raft -run 2C
+  - go test -v kvraft -run 3A
