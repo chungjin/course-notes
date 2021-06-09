@@ -1,11 +1,21 @@
 # 高效算法设计
 
-  * [sort and search](#sort-and-search)
-    + [merge sort](#merge-sort)
-    + [Quick sort](#quick-sort)
-    + [二分查找](#二分查找)
-  * [[todo]divide and conquer more](#[todo]divide and conquer more)
-  * [[todo]Leetcode相关](#[todo]Leetcode相关)
+<!--ts-->
+* [高效算法设计](#高效算法设计)
+   * [sort and search](#sort-and-search)
+      * [merge sort](#merge-sort)
+      * [Quick sort](#quick-sort)
+      * [二分查找](#二分查找)
+   * [External Sort](#external-sort)
+      * [External Merge Sort](#external-merge-sort)
+   * [External Selection](#external-selection)
+   * [[todo]divide and conquer more](#tododivide-and-conquer-more)
+   * [[todo]Leetcode相关](#todoleetcode相关)
+
+<!-- Added by: Jin Zhang, at: Tue Jun  8 23:21:34 PDT 2021 -->
+
+<!--te-->
+
 
 ## sort and search
 
@@ -189,6 +199,16 @@
         return x
     }
   ```
+
+## External Sort
+
+### External Merge Sort
+- [reference](https://zh.wikipedia.org/wiki/%E5%A4%96%E6%8E%92%E5%BA%8F)
+做法是，map/reduce. 把数据分成N份，每分进行sort，存入临时文件中。
+然后对文件头部创建一个指针，然后做类似于K位merge sort
+
+## External Selection
+类似于External Merge Sort, 不同的是，对每份sorted文件，保留一个头部指针。同时有个counter, 如果ith文件头部元素最小，counter++, file[i]++, 直到`counter == median`
 
 ## [todo]divide and conquer more
 
