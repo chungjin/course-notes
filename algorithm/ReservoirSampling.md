@@ -36,4 +36,12 @@ def sample(stream, k):
 			res[count] = stream[k+1:].next
 ```
 
+- 推导:
+![image](https://user-images.githubusercontent.com/11788053/121855230-f2338700-cca7-11eb-8c41-6c0e7a1460d7.png)
+```
+possibility = k/i * (1 - 1/(i+1)) * (1 - 1/(i+2)) * (1 - 1/(i+3)) * ... * (1 - 1/(n)) = k/n  
+
+k/i 被放进的概率，(1-1/(i+1)) 不被选出去的概率
+```
+
 - [Leetcode tag: reservoir-sampling](https://leetcode.com/tag/reservoir-sampling/)
