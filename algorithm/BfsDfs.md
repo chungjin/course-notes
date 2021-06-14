@@ -8,6 +8,7 @@
     + [无向图Detect Cycle](#无向图detect-cycle)
     + [有向图Topological Sort](#有向图topological-sort)
   * [Topological Sorting](#topological-sorting)
+  * [Tarjan's strongly connected components algorithm - DFS](#tarjan-s-strongly-connected-components-algorithm---dfs)
 
 LeetCode 上很多问题都可以抽象成 “图” ，比如搜索类问题，树类问题，迷宫问题，矩阵路径问题，等等。
 
@@ -137,17 +138,13 @@ DFS, BFS 均可，一般采用DFS，在空间复杂度上较低，并且写起�
 
 其实就是不断的寻找有向图中没有前驱(入度为0)的顶点，将之输出。然后从有向图中删除所有以此顶点为尾的弧。重复操作，直至图空，或者找不到没有前驱的顶点为止。
 
-该算法还可以判断有向图是否存在环(存在环的有向图肯定没有拓扑序列)，通过一个**count**记录找出的顶点个数，如果少于N则说明存在环使剩余的顶点的入度不为0。（degree数组记录每个点的入度数）
+该算法还可以判断有向图是否存在环(存在环的有向图肯定没有拓扑序列)，通过一个**count**记录visit过的顶点个数，如果少于N则说明存在环使剩余的顶点的入度不为0。因为环内的点永远无法满足`indegree = 0`（degree数组记录每个点的入度数）
 
-2. Tarjan's Algorithms (wiki)： DFS based， loop through each node of the graph in an arbitrary order，initiating a depth-first search that terminates when it hits any node that has already been visited since the beginning of the topological sort or the node has no outgoing edges (i.e. a leaf node). 详细过程见Reference里 NYU的课件。
-
-
-[链接](https://www.byvoid.com/zhs/blog/scc-tarjan)有向图强连通分量的Tarjan算法在图论中，一个有向图被成为是强连通的（strongly connected）当且仅当每一对不相同结点 u 和 v 间既存在从 u 到 v 的路径也存在从 v 到 u 的路径。有向图的极大强连通子图（这里指点数极大）被称为强连通分量（strongly connected component）。
 
 对于BFS, 注意用把输入图List of Edges的表达方式转变为Adjacency Lists的表达方式。
 
-BFS:每次把indegree为0的入队,如果有环，环内的点永远不会indegree为0
 ```java
+// BFS detect loop
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses < 0 || prerequisites == null) return false;
@@ -180,9 +177,10 @@ public class Solution {
 }
 ```
 
-Tarjan's Algorithms - DFS
+2. Tarjan's Algorithms (wiki)： DFS based， loop through each node of the graph in an arbitrary order，initiating a depth-first search that terminates when it hits any node that has already been visited since the beginning of the topological sort or the node has no outgoing edges (i.e. a leaf node). 详细过程见Reference里 NYU的课件。
 
 ```java
+// DFS detect loop
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses < 0 || prerequisites == null) return false;
@@ -216,3 +214,11 @@ public class Solution {
     }
 }
 ```
+
+
+## Tarjan's strongly connected components algorithm - DFS
+
+[链接](https://www.byvoid.com/zhs/blog/scc-tarjan)有向图强连通分量的Tarjan算法在图论中，一个有向图被成为是强连通的（strongly connected）当且仅当每一对不相同结点 u 和 v 间既存在从 u 到 v 的路径也存在从 v 到 u 的路径。即，从图内任意一点出发都可以到达其他所有点。有向图的极大强连通子图（这里指点数极大）被称为强连通分量（strongly connected component）。
+
+篇幅太大，放在另外一篇
+- [Tarjan 有向图强连通分量算法, 无向图割边和割点](https://github.com/chungjin/course-notes/blob/master/algorithm/TSCC.md)
