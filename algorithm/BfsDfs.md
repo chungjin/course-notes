@@ -1,12 +1,12 @@
 # DfsBfs
 
 - [DFS BFS](#dfsbfs)
-  * [DFS 和 BFS 的比较](#dfs---bfs----)
+  * [DFS 和 BFS 的比较](#dfs-和-bfs-的比较)
   * [Leetcode](#leetcode)
-    + [遍历搜索类](#-----)
-    + [有向图cycle detect](#---cycle-detect)
-    + [无向图Detect Cycle](#---detect-cycle)
-    + [有向图Topological Sort](#---topological-sort)
+    + [遍历搜索类](#遍历搜索类)
+    + [有向图cycle detect](#有向图cycle-detect)
+    + [无向图Detect Cycle](#无向图detect-cycle)
+    + [有向图Topological Sort](#有向图topological-sort)
   * [Topological Sorting](#topological-sorting)
 
 LeetCode 上很多问题都可以抽象成 “图” ，比如搜索类问题，树类问题，迷宫问题，矩阵路径问题，等等。
