@@ -1,8 +1,12 @@
 # DfsBfs
 
-- [DfsBfs](#dfsbfs)
+- [DFS BFS](#dfsbfs)
   * [DFS 和 BFS 的比较](#dfs---bfs----)
   * [Leetcode](#leetcode)
+    + [遍历搜索类](#-----)
+    + [有向图cycle detect](#---cycle-detect)
+    + [无向图Detect Cycle](#---detect-cycle)
+    + [有向图Topological Sort](#---topological-sort)
   * [Topological Sorting](#topological-sorting)
 
 LeetCode 上很多问题都可以抽象成 “图” ，比如搜索类问题，树类问题，迷宫问题，矩阵路径问题，等等。
@@ -14,12 +18,13 @@ LeetCode 上很多问题都可以抽象成 “图” ，比如搜索类问题，
 
 
 ## Leetcode
-- 遍历搜索类
+
+### 遍历搜索类
 DFS, BFS 均可，一般采用DFS，在空间复杂度上较低，并且写起来比较简单。  
 [79. Word Search](https://leetcode.com/problems/word-search/)  
 [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)  
 [130. Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)
-- 有向图cycle detect
+### 有向图cycle detect
   - DFS
     - 暴力解法：DFS + Backtracking，寻找“所有从当前节点的” path，如果试图访问 visited 则有环；缺点是，同一个点会被探索多次，而且要从所有点作为起点保证算法正确性，时间复杂度非常高
     - 最优解法是 CLRS 上用三种状态表示每个节点：
@@ -38,74 +43,80 @@ DFS, BFS 均可，一般采用DFS，在空间复杂度上较低，并且写起�
 
   [207. Course Schedule](https://leetcode.com/problems/course-schedule/description/)
 
-- 无向图Detect Cycle
+### 无向图Detect Cycle
   - DFS
     - 依然记录每个点的状态，0 代表“未访问”；1 代表“访问中”；2 代表“已访问”；
     - DFS call里面要传入prev节点这个参数，避免出现原路返回，或者回到前一个节点误判为有环。(和directed graph DFS唯一的不同之处)。
     - 其他情况下，如果我们试图访问一个状态为 “1” 的节点，都可以说明图中有环。
   - BFS
-    - 初始化标记所有点的状态为0.
-    - 随便扔一个点进 queue，标记 "1"，然后 BFS，所有 child = "0" 的都加入队列，队列中的点都标记为1.
-    - 所有 child 都检查完之后，立刻把当前 node = 2，不然下一层 BFS 会回头去看自己然后误报。
-    - 如果遇到 child = "1" 的说明有环
-```python
-# Python3 program to detect cycle in  
-# an undirected graph using BFS.
-from collections import deque
+     + 方法1: 一层一层的扫，并且当前层结束时，把当前层所有的点再iterate一遍，全部标记为已访问。避免扫到下一层的时候，寻找相邻点，会误判有环。
+       - 初始化标记所有点的状态为0.
+       - 随便扔一个点进 queue，标记 "1"，然后 BFS，所有 child = "0" 的都加入队列，队列中的点都标记为1.
+       - 当 node 的所有 child 点都检查完并加入queue后，立刻把当前 node = 2，不然下一层 BFS 会回头去看自己然后误报。
+       - 如果遇到 child = "1" 的说明有环
+    + 方法2: 在常规BFS基础上，记录访问次序，比如`a->b, parent[b] = a`. 下一次从`c->b`,如果`c!=a`, 则说明有环 
+       - 初始化标记所有点的状态为0.
+       - 随便扔一个点 a 进 queue, 把它所有child都加入队列。如果child c被visit过，并且不是a->c, 那么证明环
+       - 然后扫描下一层
+    ```python
+    # Python3 program to detect cycle in  
+    # an undirected graph using BFS.
+    from collections import deque
 
-def addEdge(adj: list, u, v):
-    adj[u].append(v)
-    adj[v].append(u)
+    def addEdge(adj: list, u, v):
+        adj[u].append(v)
+        adj[v].append(u)
 
-def isCyclicConnected(adj: list, s, V,  
-                      visited: list):
+    def isCyclicConnected(adj: list, s, V,  
+                          visited: list):
 
-    # Set parent vertex for every vertex as -1.
-    parent = [-1] * V
+        # Set parent vertex for every vertex as -1.
+        parent = [-1] * V
 
-    # Create a queue for BFS
-    q = deque()
+        # Create a queue for BFS
+        q = deque()
 
-    # Mark the current node as  
-    # visited and enqueue it
-    visited[s] = True
-    q.append(s)
+        # Mark the current node as  
+        # visited and enqueue it
+        visited[s] = True
+        q.append(s)
 
-    while q != []:
+        while q != []:
 
-        # Dequeue a vertex from queue and print it
-        u = q.pop()
+            # Dequeue a vertex from queue and print it
+            u = q.pop()
 
-        # Get all adjacent vertices of the dequeued
-        # vertex u. If a adjacent has not been visited,
-        # then mark it visited and enqueue it. We also
-        # mark parent so that parent is not considered
-        # for cycle.
-        for v in adj[u]:
-            if not visited[v]:
-                visited[v] = True
-                q.append(v)
-                parent[v] = u
-            # 如果访问到一个已经visit过的点确不是它的parent，说明有环
-            elif parent[u] != v:
+            # Get all adjacent vertices of the dequeued
+            # vertex u. If a adjacent has not been visited,
+            # then mark it visited and enqueue it. We also
+            # mark parent so that parent is not considered
+            # for cycle.
+            for v in adj[u]:
+                if not visited[v]:
+                    visited[v] = True
+                    q.append(v)
+                    parent[v] = u
+                # 如果访问到一个已经visit过的点确不是它的parent，说明有环
+                elif parent[u] != v:
+                    return True
+
+        return False
+
+    def isCyclicDisconnected(adj: list, V):
+
+        # Mark all the vertices as not visited
+        visited = [False] * V
+
+        for i in range(V):
+            if not visited[i] and \
+                   isCyclicConnected(adj, i, V, visited):
                 return True
-
-    return False
-
-def isCyclicDisconnected(adj: list, V):
-
-    # Mark all the vertices as not visited
-    visited = [False] * V
-
-    for i in range(V):
-        if not visited[i] and \
-               isCyclicConnected(adj, i, V, visited):
-            return True
-    return False
-```
+        return False
+    ```
 
   [261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/description/)
-- 有向图Topological Sort
+
+### 有向图Topological Sort
   - BFS
     - 假设L是存放结果的列表，先找到那些入度为零的节点，把这些节点放到L中，因为这些节点没有任何的父节点。然后把与这些节点相连的边从图中去掉，再寻找图中的入度为零的节点。对于新找到的这些入度为零的节点来说，他们的父节点已经都在L中了，所以也可以放入L。重复上述操作，直到找不到入度为零的节点。如果此时L中的元素个数和节点总数相同，说明排序完成；如果L中的元素个数和节点总数不同，说明原图中存在环，无法进行拓扑排序。
 - Count # of connected components
