@@ -12,3 +12,6 @@
 - [Graph](Graph.md)
 - [Minimum Spanning Tree](minSpanningTree.md)
 - [Segment Tree](SegmentTree.md)
+
+## Reference
+- [Algorithm Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
