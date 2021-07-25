@@ -7,6 +7,11 @@
 - Concept
   + Push data to client: [Websocket](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
   + [Transaction across datacenters](Transactions-Across-Datacenters.md)
+  + [How nodes communicate](node-communicate.md)
+- Database, Schema Design
+  - [HBase store msg](hbase-msg.md)
+  - [Facebook TAO](tao.md)
+  - [Time-series datagase TSDB](ts-db.md)
 - Feature Design
   + Global ranking and user ranking, [Ranking System](ranking.md)
   + Redis, zookeeper实现全局锁
@@ -17,6 +22,7 @@
   + [Redis: eventual consistency](redis.md)
   + [Zookeeper: strong consistency](zookeeper.md)
   + [ElasticSearch](elasticseach.md)
+  + [Webhook](webhook.md)
 
 ## Foundation
 第一步首先要知道基本概念, 比如从Designing data intensive application就很好。但书籍太厚，可以从读别人笔记入手.
@@ -172,3 +178,4 @@ Deep dive
 - https://www.1point3acres.com/bbs/thread-771667-1-1.html
 - [mock interview](https://youtu.be/TUhbXHRLf0o)
 - [System Design Interview: Step By Step](https://youtu.be/bUHFg8CZFws)
+- [tianpan-system-design](https://tianpan.co/hacking-the-software-engineer-interview/?isAdmin=true)

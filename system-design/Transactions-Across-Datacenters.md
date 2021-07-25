@@ -22,6 +22,12 @@ Strong Consistency
 
 
 
+## How nodes communicate
+
+![image](https://user-images.githubusercontent.com/11788053/125039353-3ddd1480-e04b-11eb-9f65-bd40605bc4b7.png)
+
+
+
 ## 常见机制
 
 ![](https://lotabout.me/2019/Data-Synchronization-in-Distributed-System/sync-trade-off.svg)
