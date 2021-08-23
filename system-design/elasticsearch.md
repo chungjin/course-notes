@@ -1,5 +1,9 @@
 # Elastic Search
 
+[TOC]
+
+
+
 ## Elastic Search的使用
 
 参见 [阮一峰：全文搜索引擎Elasticsearch入门教程](https://www.ruanyifeng.com/blog/2017/08/elasticsearch.html)
@@ -12,21 +16,21 @@
 
 ### Node
 
-①主节点（Master Node）：也叫作主节点，主节点负责index update(create, delete)、sharding, admin job (monitor slave node status)等工作。Elasticsearch 中的主节点的工作量相对较轻。
+![elasticsearch](https://user-images.githubusercontent.com/11788053/126911313-86a7f56a-6217-4d70-86f0-d261cae8a9a1.png)
 
-用户的请求可以发往任何一个节点，并由该节点负责分发请求、收集结果等操作，而并不需要经过主节点转发。
+**Master Node**:可以理解为主节点，用于元数据(metadata)的处理，比如索引的新增、删除、分片分配等，以及管理集群各个节点的状态包括集群节点的协调、调度。elasticsearch集群中可以定义多个主节点，但是，**在同一时刻，只有一个主节点起作用**，其它定义的主节点，是作为主节点的候选节点存在。当一个主节点故障后，集群会从候选主节点中选举出新的主节点。也就是说，主节点的产生都是由选举产生的。Master节点它仅仅是对索引的管理、集群状态的管理。像其它的对数据的存储、查询都不需要经过这个Master节点。因此在ES集群中。它的压力是比较小的。所以，我们在构建ES的集群当中，Master节点可以不用选择太好的配置，但是我们一定要保证服务器的安全性。因此，必须要保证主节点的稳定性。
 
-通过在配置文件中设置 node.master=true 来设置该节点成为候选主节点（但该节点不一定是主节点，主节点是集群在候选节点中选举出来的），在 Elasticsearch 集群中只有候选节点能够用zen discovery协议(类Raft)来成为Master.
+**Data Node:** 存储数据的节点，数据的读取、写入最终的作用都会落到这个上面。数据的分片、搜索、整合等 这些操作都会在数据节点来完成。因此，数据节点的操作都是比较消耗CPU、内存、I/O资源。所以，我们在选择data Node数据节点的时候，硬件配置一定要高一些。高的硬件配置可以获得高效的存储和分析能力。因为最终的结果都是需要到这个节点上来。
 
-②数据节点（Data Node）：数据节点，负责数据的存储和相关具体操作，比如索引数据的创建、修改、删除、搜索、聚合。
+**Client  Node:**可选节点。作任务分发使用。它也会存储一些元数据信息，但是不会对数据做任何修改，仅仅用来存储。它的好处是可以分担datanode的一部分压力。因为ES查询是两层汇聚的结果，第一层是在datanode上做查询结果的汇聚。然后把结果发送到client Node 上来。Cllient Node收到结果后会再做第二次的结果汇聚。然后client会把最终的结果返回给用户。
 
-所以，数据节点对机器配置要求比较高，首先需要有足够的磁盘空间来存储数据，其次数据操作对系统 CPU、Memory 和 I/O 的性能消耗都很大。
+那么从上面的结构图我们可以看到ES集群的工作流程：
 
-通常随着集群的扩大，需要增加更多的数据节点来提高可用性。通过在配置文件中设置 node.data=true 来设置该节点成为数据节点。
+1，搜索查询，比如Kibana去查询ES的时候，默认走的是Client Node。然后由Client Node将请求转发到datanode上。datanode上的结构返回给client Node.然后再返回给客户端。
 
-③客户端节点（Client Node）：就是既不做候选主节点也不做数据节点的节点，只负责请求的分发、汇总等，也就是下面要说到的协调节点的角色。
+2，索引查询，比如我们调用API去查询的时候，走的是MasterNode，然后由master 将请求转发到相应的数据节点上，然后再由Master将结果返回。
 
-​	第一个serve user request的node称之为coordinate node, 它的主要任务是计算文件存在哪个位置，并转发请求，并汇总response, 发送给用户。
+3，最终我们都知道，所有的服务请求都到了datanode上。所以，它的压力是最大的。
 
 
 
@@ -57,6 +61,8 @@
 
   - JVM refresh to OS buffer一秒钟一次，JVM中的数据对user不可见。
   - WAL 写满时(清空log)再做一次referesh, 生成version id.
+
+- Scalability: consistent hashing for sharding.
 
 
 
@@ -174,6 +180,12 @@ Term Dictionary可以用B+树继续优化。
      其压缩的思路其实很简单。与其保存 100 个 0，占用 100 个 bit。还不如保存 0 一次，然后声明这个 0 重复了 100 遍
 
    - **Summary**:  Elasticsearch 对其性能有详细的对比（[ https://www.elastic.co/blog/frame-of-reference-and-roaring-bitmaps ](https://www.elastic.co/blog/frame-of-reference-and-roaring-bitmaps)）。简单的结论是：因为 Frame of Reference 编码是如此 高效，对于简单的相等条件的过滤缓存成纯内存的 bitset 还不如需要访问磁盘的 skip list 的方式要快。
+
+
+
+## Distributed Aggregation
+
+
 
 
 

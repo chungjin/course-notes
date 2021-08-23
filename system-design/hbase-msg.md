@@ -1,3 +1,5 @@
+
+
 # HBase store msg
 
 [TOC]
@@ -5,6 +7,8 @@
 
 
 ## HBase data model
+
+![](https://cdn.guru99.com/images/HBase/100715_1237_HBaseArchit1.png)
 
 ![](https://img-blog.csdnimg.cn/20210528231817288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzA5NTc3,size_16,color_FFFFFF,t_70)
 
@@ -58,7 +62,7 @@ Facebook Messenger采用HBase来存储信息。
 
 *会话hash值 | 会话id | 逆序消息id*  
 
-- 会话hash值的目的为数据分区（region）存储，预分区能够分摊数据读写压力；
+- 会话hash值的目的为数据分区（region）存储，预分区能够分摊数据读写压力；(salt)
 
 - 会话id确定唯一会话，一个**群**里的所有消息拥有相同的会话id；
 
@@ -80,7 +84,25 @@ Facebook Messenger采用HBase来存储信息。
 
 3、确定唯一会话后依照rowkey的后续消息Id确定某一个具体消息***|***|8896232141957373907，注意这个消息Id已经被逆序处理（Long.MAX_VALUE-消息Id），用来做拉取最邻近的消息。 
 
+
+
+## HBASE作为TSDB的Engine
+
+OpenTSDB采用HBASE作为数据实现[3]
+
 ## Reference
 
-1. [聊聊HBase-1](https://blog.csdn.net/qq_41709577/article/details/117375943?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-0&spm=1001.2101.3001.4242)
-2. [HBase存储IM消息，RowKey该怎么设计？](https://cloud.tencent.com/developer/article/1525569)
+1. [一条数据的HBase之旅，简明HBase入门教程-Read全流程](http://www.nosqlnotes.com/technotes/hbase/hbase-read/)
+
+2. [聊聊HBase-1](https://blog.csdn.net/qq_41709577/article/details/117375943?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-0&spm=1001.2101.3001.4242)
+
+3. [HBase存储IM消息，RowKey该怎么设计？](https://cloud.tencent.com/developer/article/1525569)
+
+4. [HBase RowKey与索引设计](http://www.nosqlnotes.com/technotes/hbase/hbase-rowkey/)
+
+5. [OpenTSDB原理系列：元数据模型](http://www.nosqlnotes.com/technotes/opentsdb-schema/)
+
+6. [OpenTSDB原理系列：数据表设计](http://www.nosqlnotes.com/technotes/opentsdb-tabledesign/)
+
+   
+

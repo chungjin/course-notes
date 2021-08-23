@@ -5,13 +5,23 @@
 - Overiew: [System Design Interview - Step By Step Guide](https://www.youtube.com/watch?v=bUHFg8CZFws&t=3399s) \[1\]
   - Notes: [step-by-step-guide.md](step-by-step-guide.md)
 - Concept
-  + Push data to client: [Websocket](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
-  + [Transaction across datacenters](Transactions-Across-Datacenters.md)
-  + [How nodes communicate](node-communicate.md)
+  - [http request/response protocol](basic/http_request_response.md)
+  - http://www.ruanyifeng.com/blog/2017/05/websocket.html)
+  - [Transaction across datacenters](basic/Transactions-Across-Datacenters.md)
+  - [How nodes communicate](node-communicate.md)
 - Database, Schema Design
-  - [HBase store msg](hbase-msg.md)
+  - Basic
+    - [Cache Strategy](cache.md)
+    - [Storage Engine](storage-engine.md)
+  - NoSQL
+    - [Cassandra](cassandra.md)
+    - [HBase store msg](hbase-msg.md)
+  - Distributed File System
+    - (todo)GFSM
+    - [Facebook Haystack](haystack.md)
   - [Facebook TAO](tao.md)
   - [Time-series datagase TSDB](ts-db.md)
+  - Summary: 几乎所有类型的数据库都用了consistent hashing来做sharding.
 - Feature Design
   + Global ranking and user ranking, [Ranking System](ranking.md)
   + Redis, zookeeper实现全局锁
@@ -21,7 +31,7 @@
   + [Kafka](kafka.md)
   + [Redis: eventual consistency](redis.md)
   + [Zookeeper: strong consistency](zookeeper.md)
-  + [ElasticSearch](elasticseach.md)
+  + [Elasticsearch + logstash + kibana ELK](elk.md)
   + [Webhook](webhook.md)
 
 ## Foundation

@@ -5,6 +5,12 @@
 
 ![Kafka + ZooKeeper](https://img2020.cnblogs.com/blog/1450803/202007/1450803-20200727192317741-1175447985.png)  
 
+## Feature
+
+- a distributed pub-sub messaging system that resolves N^2 relationships to N. Publishers and subscribers can operate at their own rates.
+- super fast with zero-copy technology(DMA)
+- support fault-tolerant data persistence
+
 ## Controller
 
 
@@ -94,6 +100,8 @@ What happens when we fetch data from memory and send it over the network.
 
 为了负载均衡，一个topic会有好几个分区，会存在不同的broker/rack上。其中，partition是以文件夹的形式存储在具体Broker本机上。
 
+Data Partitioning and replication takes place using **consistent hashing**.
+
 
 
 ### Data Store
@@ -164,3 +172,4 @@ A consumer group contains mutiple consumer instances, share a group ID. 组内�
 - [Kafka的Controller Broker是什么](https://jiamaoxiang.top/2020/07/06/Kafka%E7%9A%84Controller-Broker%E6%98%AF%E4%BB%80%E4%B9%88/)
 - [What makes Apache Kafka so Fast?](https://medium.com/@sunny_81705/what-makes-apache-kafka-so-fast-71b477dcbf0)
 - [kafka基本原理及leader，replica，isr介绍](https://www.huaweicloud.com/articles/36bed2b1718d4bcb889008acfcfb692a.html)
+- [tianpan: What is Apache Kafka?](https://tianpan.co/notes/61-what-is-apache-kafka)

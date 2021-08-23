@@ -1,6 +1,7 @@
 # Algorithm
 
 
+- [Tree](tree.md)
 - [Trie](Trie.md)
 - [Union and Find](UnionAndFind.md)
 - [Pack](Pack.md)
